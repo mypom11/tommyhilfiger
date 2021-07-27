@@ -151,23 +151,30 @@ main{
         position: relative;
         perspective: 500px;
         @include size(100vw,50%);
-        &:hover{
-          .visual_text1{
-            transform: rotateY(10deg);
-          }
-          img:nth-of-type(2){
-            transform: rotateY(-3deg);
-          }
-        }   
+        // &:hover{
+        //   .visual_text1{
+        //     transform: rotateY(10deg);
+        //   }
+        //   img:nth-of-type(2){
+        //     transform: rotateY(-3deg);
+        //   }
+        // }   
         img:nth-of-type(1){
           @include size;
         }
         .visual_text1{
+          width: vw(1000);
           @include position(35%, 40%);
-          transition: 1s;
+          transition: 0.5s;
           transform: rotateY(0);
           h2{
             text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            @include position(0, 0);
+            opacity: 0;
+            transition: 1s;
+            &.on{
+              opacity: 1;
+            }
           }
         }
         img:nth-of-type(2){
@@ -224,9 +231,7 @@ main{
             }
             ul{
               position: relative;
-              &.first_slide{
-                top:vh(-200);
-              }
+              transition: 1s;
               li{
                 @include size(vw(381),vh(546));
                 border-radius: 10px;
@@ -412,12 +417,13 @@ main{
       .slides{
         @include position(0, 0);
         width: vw(1594);
-        visibility: hidden;
+        opacity: 0;
+        transition: 1s;
         &:last-child{
           margin-right: 0;
         }
         &.on{
-          visibility: visible;
+          z-index: 1;
           opacity: 1;
         }
       }
@@ -453,9 +459,12 @@ main{
         }
       }
       }
-      
     .scroll_btn{
       margin: vh(100) auto;
+      cursor: pointer;
+      span{
+        transition: 0.5s;
+      }
     }
   }
 
@@ -529,6 +538,7 @@ main{
         li{
           @include position(14%, 0);
           opacity: 0;
+          transition: 1s;
           &.on{
             opacity: 1;
           }
@@ -547,15 +557,20 @@ main{
         @include size(60%, 100%);
         position: relative;
         perspective: 1000px;
+        overflow: hidden;
         li{
           @include position(0, 0);
           @include size(vw(616), vw(680));
           border: 1px solid $main-color;
           box-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+          transition: 1s;
           @for $i from 1 to 5 {
             &:nth-child(#{$i}){
               @include background('md#{$i}.jpg');
             }
+          }
+          &.page_-1, &.page_-2, &.page_-3{
+            left: -100%;
           }
           &.page_0{
             z-index: 4;
