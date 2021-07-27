@@ -48,7 +48,7 @@ body{
     @include font(rem(14), normal, $font-normal);
     font-family: 'Oswald', sans-serif;
     .inner{
-      width: 1594px;
+      width: vw(1594);
       margin: 0 auto;
     }
     h2{
@@ -82,6 +82,18 @@ body{
       p{
         @include font(rem(20), normal);
         margin-top: em(20,20);
+      }
+    }
+    .scroll_btn{
+      @include size(vw(200),vw(35));
+      @include flex;
+      span{
+        @include size(vw(35), vw(35));
+        border: 1px solid $main-color;
+        box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        &.on{
+          background: $main-color;
+        }
       }
     }
 }
@@ -120,17 +132,15 @@ main{
   //visual
 
   #visual{
-    @include size(100vw, 100vh);
+    @include size(100vw, 200vh);
     .visual_slide{
-      width: 200vw;
-      height: 100vh;
-      display: flex;
+      @include size;
       overflow: hidden;
       .visual_1{
         overflow: hidden;
         position: relative;
         perspective: 500px;
-        @include size(100vw,100%);
+        @include size(100vw,50%);
         &:hover{
           .visual_text1{
             transform: rotateY(10deg);
@@ -157,13 +167,15 @@ main{
         }
       }
       .visual_2{
-        padding-top: vh(60);
         @include flex;
         width: 100vw;
+        overflow: hidden;
         div{
           width: 50%;
           &.visual_text2{
-            padding: vw(160);
+            margin-top: 20%;
+            align-self: flex-start;
+            padding: 0 vw(160);
             h3{
               line-height: em(80,80);
               margin-bottom: em(40, 80);
@@ -214,17 +226,21 @@ main{
       row-gap: vh(140);
       li{
         position: relative;
+        @for $i from 1 to 7 {
+          &:nth-child(#{$i}){
+            .img_box{
+              @include background('popular#{$i}.jpg');
+            }
+          }
+        }
         .img_box{
           position: absolute;
-          border: 1px solid $font-normal;
-          img{
-            @include size;
-          }
         }
         .popular_text_box{
           position: absolute;
           h3{
-            line-height: rem(80);
+            @include font(rem(60),bold,$sub-color);
+            line-height: rem(60);
           }
           p{
             @include font(rem(30));
@@ -339,5 +355,176 @@ main{
       }
       
     }
+  }
+
+  //last_viewed
+
+  #last_viewed{
+    padding: vh(100) 0;
+    .last_slide{
+      @include flex;
+      margin-top: vh(80);
+      @include size(100%, vh(560));
+      li{
+        @include size(vw(360), 100%);
+        border: 1px solid $main-color;
+        box-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+        .contents_img{
+          @include size(100%, 76%);
+          background: $sub-color;
+        }
+        .content_text{
+          padding: vw(20) vw(20);
+          h6{
+            @include font(rem(30));
+          }
+        }
+
+      }
+    }
+    .scroll_btn{
+      margin: vh(100) auto;
+    }
+  }
+
+  //arrival
+
+  #arrival{
+    padding-bottom: vh(80);
+    .arrival_grid{
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      margin-top: vh(60);
+      gap: vw(36) vw(36);
+      .arrival_item{
+        @include size(vw(780), vw(765));
+        border: 1px solid $sub-color;
+        position: relative;
+        h4{
+          @include position($l:vw(40), $b:vh(60));
+          @include font(rem(40), bold, $sub-color);
+        }
+      }
+    }
+  }
+
+  //md- pick
+
+  #md_pick{
+    padding-bottom: vh(80);
+    height: 100vh;
+    .md_slider{
+      height: 100%;
+      margin-top: vh(70);
+      @include flex;
+      position: relative;
+      .md_text{
+        @include size(40%, 100%);
+        position: relative;
+        li{
+          @include position(14%, 0);
+          opacity: 0;
+          &.on{
+            opacity: 1;
+          }
+          h5{
+            @include font(rem(40), normal);
+          }
+          p{
+            @include font(rem(18));
+            margin-top: vh(40);
+            width: 60%;
+          }
+        }
+      }
+      .md_imgs{
+        @include size(60%, 100%);
+        position: relative;
+        perspective: 1000px;
+        li{
+          @include position(0, 0);
+          @include size(vw(616), vw(680));
+          border: 1px solid $main-color;
+          box-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+          @for $i from 1 to 5 {
+            &:nth-child(#{$i}){
+              @include background('md#{$i}.jpg');
+            }
+          }
+          &.page_0{
+            z-index: 4;
+          }
+          &.page_1{
+            transform: scale(0.8) rotateY(-20deg);
+            left: 24%;
+            z-index: 3;
+          }
+          &.page_2{
+            transform: scale(0.6) rotateY(-30deg);
+            left: 40%;
+            z-index: 2;
+          }
+          &.page_3{
+            transform: scale(0.4) rotateY(-40deg);
+            left: 50%;
+            z-index: 1;
+          }
+        }
+      }
+      .scroll_btn{
+        @include position(70%, 5%);
+      }
+    }
+  }
+  
+  //street
+
+  #street{
+    margin-bottom: vh(80);
+    .street_grid{
+      margin-top: vh(80);
+      display: grid;
+      grid-template-columns: repeat(4,vw(376));
+      grid-template-rows: repeat(5,vw(376));
+      gap: vw(30) vw(30);
+      grid-template-areas: 
+      "street0 street1 street1 street2"
+      "street0 street3 street4 street4"
+      "street5 street5 street4 street4"
+      "street6 street7 street7 street8"
+      "street9 street9 street10 street8";
+      li{
+        background: $main-color;
+        @for $i from 0 to 11 {
+          &.street_#{$i}{
+            grid-area: street#{$i};
+          }
+        }
+      }
+    }
+  }
+}
+
+//footer
+
+footer{
+  position: relative;
+  background: $main-color;
+  padding: vh(20) vw(164);
+  height: 180px;
+  display: flex;
+  color:#ccc;
+  h1{
+    @include background('logo2.png');
+    font-size:0;
+    @include size(128px, 87px);
+    margin-right: vw(40);
+  }
+  .info{
+    font-family: 'noto sans kr';
+  }
+  .copyright{
+    @include position($b:15%, $l:50%);
+    transform: translateX(-50%);
   }
 }
