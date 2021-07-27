@@ -47,6 +47,7 @@ $font-normal : #3d3d3d;
 body{
     @include font(rem(14), normal, $font-normal);
     font-family: 'Oswald', sans-serif;
+    overflow-x: hidden;
     .inner{
       width: vw(1594);
       margin: 0 auto;
@@ -72,16 +73,25 @@ body{
       padding: 0 em(35,20);
     }
     .titles{
-      h5{
-        @include font(rem(20),bold,#ccc);
-      }
       h3{
         @include font(rem(60), bold, $main-color);
         line-height: em(60,60);
       }
-      p{
-        @include font(rem(20), normal);
-        margin-top: em(20,20);
+    }
+    .bg_btn{
+      @include position(0, 0);
+      @include size;
+      background: rgba(0,0,0,0.5);
+      opacity: 0;
+      transition: 1s;
+      span{
+        @include size(vw(230),vw(50));
+        @include position(50%, 50%);
+        border:1px solid #fff;
+        text-align: center;
+        line-height: vw(50);
+        @include font(rem(18),bold, #fff);
+        transform: translate(-50%, -50%);
       }
     }
     .scroll_btn{
@@ -173,27 +183,45 @@ main{
         div{
           width: 50%;
           &.visual_text2{
-            margin-top: 20%;
+            margin-top: 14%;
             align-self: flex-start;
             padding: 0 vw(160);
             h3{
               line-height: em(80,80);
-              margin-bottom: em(40, 80);
+              margin-bottom: em(60, 80);
+              strong{
+                font-size: rem(110);
+                color: $sub-color;
+              }
+              span{
+                font-weight: normal;
+                margin-right: em(30,80);
+              }
             }
             p{
+              font-family: 'Noto Sans KR';
               font-size: rem(20);
             }
             .visual_sub_btn{
               width: vw(380);
-              margin-top: vh(50);
+              margin-top: vh(80);
               @include flex;
             }
           }
           &.visual_background{
             display: flex;
             position: relative;
-            left: vw(-100);
-            transform: rotate(35deg);
+            left: vw(-300);
+            transform: rotate(30deg);
+            @for $i from 1 to 3 {
+              ul:nth-child(#{$i}){
+                @for $j from 1 to 4 {
+                  li:nth-child(#{$j}){
+                    @include background('jay#{$i}-#{$j}.png')
+                  }
+                }
+              }
+            }
             ul{
               position: relative;
               &.first_slide{
@@ -201,7 +229,6 @@ main{
               }
               li{
                 @include size(vw(381),vh(546));
-                background: #000;
                 border-radius: 10px;
                 border: 10px solid #fff;
                 box-shadow: 3px 3px 6px rgba(0,0,0,0.5);
@@ -217,9 +244,9 @@ main{
   //popular
 
   #popular{
-    padding: vh(80) 0;
+    padding: vh(140) 0;
     .popular_grid{
-      margin-top: vh(150);
+      margin-top: vh(80);
       display: grid;
       grid-template-columns: repeat(2, 50%);
       grid-template-rows: repeat(3,vh(710));
@@ -235,6 +262,11 @@ main{
         }
         .img_box{
           position: absolute;
+          &:hover{
+            .bg_btn{
+              opacity: 1;
+            }
+          }
         }
         .popular_text_box{
           position: absolute;
@@ -320,40 +352,41 @@ main{
   //sale_banner
 
   #sale_banner{
-    .sale_slider{
-      display: flex;
-      @include size(300vw, 100vh);
-      li{
-        @include size(100vw);
-        background: $sub-color;
-        padding: 0 vw(160);
+    position: relative;
+    @include size(100vw,100vh);
+    .sale_container{
+      @include size(100vw, 100vh);
+      padding: 0 vw(160);
+      background: $sub-color;
+      @include flex;
+      .sale_text{
         @include flex;
-        .sale_text{
-          @include flex;
-          flex-direction: column;
-          h2{
-            @include font(rem(80),bold,#fff);
-            line-height: rem(140);
-          }
-          p{
-            @include font(rem(30),normal,#fff);
-            margin: em(30,30);
-          }
-          .filled{
-            margin-top: vh(50);
-          }
+        flex-direction: column;
+        h2{
+          @include font(rem(100),bold,#fff);
+          line-height: rem(140);
         }
-        .sale_img{
-          border-radius: 50%;
-          overflow: hidden;
-          background: #fff;
-          @include size(vw(800),vw(800));
-          img{
-            @include size;
-          }
+        p{
+          @include font(rem(30),normal,#fff);
+          margin: em(30,30);
+        }
+        .blank{
+          margin-top: vh(50);
+          @include font(rem(18),normal,#fff);
+          line-height: em(26,18);
+          border-color: #fff;
         }
       }
-      
+      .sale_img{
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: -3px 3px 6px rgba(0,0,0,0.5);
+        @include size(vw(800),vw(800));
+        img{
+          @include size(auto, 100vh);
+          @include position($b:0, $r:-5%);
+        }
+      }
     }
   }
 
@@ -362,26 +395,65 @@ main{
   #last_viewed{
     padding: vh(100) 0;
     .last_slide{
-      @include flex;
       margin-top: vh(80);
-      @include size(100%, vh(560));
-      li{
-        @include size(vw(360), 100%);
-        border: 1px solid $main-color;
-        box-shadow: 3px 3px 6px rgba(0,0,0,0.5);
-        .contents_img{
-          @include size(100%, 76%);
-          background: $sub-color;
-        }
-        .content_text{
-          padding: vw(20) vw(20);
-          h6{
-            @include font(rem(30));
+      position: relative;
+      @include size(400vw, vh(560));
+      @for $i from 1 to 5 {
+        .slide_#{$i}{
+          @for $j from 1 to 5 {
+            li:nth-child(#{$j}){
+              .contents_img{
+                @include background('viewed#{$i}-#{$j}.jpg');
+              }
+            }
           }
         }
-
       }
-    }
+      .slides{
+        @include position(0, 0);
+        width: vw(1594);
+        visibility: hidden;
+        &:last-child{
+          margin-right: 0;
+        }
+        &.on{
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+      .depth1{
+        @include flex;
+        @include size(100%, vh(560));
+        li{
+          @include size(vw(360), 100%);
+          border: 1px solid $main-color;
+          box-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+          .contents_img{
+            @include size(100%, 76%);
+            position: relative;
+            &:hover{
+              .bg_btn{
+                opacity: 1;
+              }
+            }
+          }
+          .content_text{
+            padding: vw(20) vw(20);
+            h6{
+              width: 90%;
+              overflow:hidden; 
+              text-overflow:ellipsis; 
+              white-space:nowrap;
+              line-height: vh(50);
+              @include font(rem(24),bold);
+              font-family: "Noto Sans KR";
+            }
+          }
+  
+        }
+      }
+      }
+      
     .scroll_btn{
       margin: vh(100) auto;
     }
@@ -397,12 +469,45 @@ main{
       margin-top: vh(60);
       gap: vw(36) vw(36);
       .arrival_item{
+        cursor: pointer;
         @include size(vw(780), vw(765));
         border: 1px solid $sub-color;
         position: relative;
+        overflow: hidden;
+        &:hover{
+          .item_img{
+            transform: scale(1);
+            .bg_btn{
+              opacity: 0;
+            }
+          }
+          h4{
+            transform: translate(-50%, -50%) scale(2);
+            opacity: 1;
+          }
+        }
+        .item_img{
+          @include size;
+          transform: scale(1.2);
+          transition: 1s;
+          .bg_btn{
+            opacity: 1;
+          }
+        }
+        @for $i from 1 to 5 {
+          &:nth-child(#{$i}){
+            .item_img{
+              @include background('arrival#{$i}.jpg');
+            }
+          }
+        }
         h4{
-          @include position($l:vw(40), $b:vh(60));
-          @include font(rem(40), bold, $sub-color);
+          @include position(50%, 50%);
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 0;
+          transition: 1s;
+          text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+          @include font(rem(60), bold, $sub-color);
         }
       }
     }
@@ -434,6 +539,7 @@ main{
             @include font(rem(18));
             margin-top: vh(40);
             width: 60%;
+            font-family: 'Noto Sans KR';
           }
         }
       }
@@ -481,12 +587,17 @@ main{
 
   #street{
     margin-bottom: vh(80);
+    .titles{
+      span{
+        color: $sub-color;
+      }
+    }
     .street_grid{
       margin-top: vh(80);
       display: grid;
-      grid-template-columns: repeat(4,vw(376));
-      grid-template-rows: repeat(5,vw(376));
-      gap: vw(30) vw(30);
+      grid-template-columns: repeat(4,vw(390));
+      grid-template-rows: repeat(5,vw(390));
+      gap: vw(10) vw(10);
       grid-template-areas: 
       "street0 street1 street1 street2"
       "street0 street3 street4 street4"
@@ -494,10 +605,29 @@ main{
       "street6 street7 street7 street8"
       "street9 street9 street10 street8";
       li{
-        background: $main-color;
+        overflow: hidden;
+        .street_img{
+          transform: scale(1);
+          transition: 1s;
+          .bg_btn{
+            opacity: 1;
+          }
+        }
+        &:hover{
+          .street_img{
+            transform: scale(1.2);
+            .bg_btn{
+              opacity: 0;
+            }
+          }
+        }
         @for $i from 0 to 11 {
           &.street_#{$i}{
             grid-area: street#{$i};
+            .street_img{
+              @include size;
+              @include background('street#{$i}.jpg');
+            }
           }
         }
       }
@@ -521,7 +651,7 @@ footer{
     margin-right: vw(40);
   }
   .info{
-    font-family: 'noto sans kr';
+    font-family: 'Noto Sans KR';
   }
   .copyright{
     @include position($b:15%, $l:50%);
