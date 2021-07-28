@@ -151,14 +151,6 @@ main{
         position: relative;
         perspective: 500px;
         @include size(100vw,50%);
-        // &:hover{
-        //   .visual_text1{
-        //     transform: rotateY(10deg);
-        //   }
-        //   img:nth-of-type(2){
-        //     transform: rotateY(-3deg);
-        //   }
-        // }   
         img:nth-of-type(1){
           @include size;
         }
@@ -218,26 +210,23 @@ main{
           &.visual_background{
             display: flex;
             position: relative;
-            left: vw(-300);
+            @include size(50%, 100vh);
             transform: rotate(30deg);
-            @for $i from 1 to 3 {
-              ul:nth-child(#{$i}){
-                @for $j from 1 to 4 {
-                  li:nth-child(#{$j}){
-                    @include background('jay#{$i}-#{$j}.png')
-                  }
-                }
-              }
-            }
             ul{
               position: relative;
-              transition: 1s;
+              transition: 0.3s;
+              @include size(50%, 100%);
+              right: 0;
               li{
                 @include size(vw(381),vh(546));
                 border-radius: 10px;
                 border: 10px solid #fff;
                 box-shadow: 3px 3px 6px rgba(0,0,0,0.5);
-                margin: vh(60) vw(60);
+                margin: 0 vw(60);
+                position: absolute;
+                img{
+                  @include size;
+                }
               }
             }
           }
@@ -594,6 +583,7 @@ main{
       }
       .scroll_btn{
         @include position(70%, 5%);
+        cursor: pointer;
       }
     }
   }
