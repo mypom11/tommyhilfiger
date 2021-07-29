@@ -52,7 +52,7 @@ function start(){
         current = 0;
         setTimeout(function(){
         slide1.style.transition = '0.3s'    
-        },110)
+        },120)
     }
 }
 function start2(){
