@@ -1,3 +1,7 @@
+html {
+  font-size: 1vw;
+}
+
 body {
   font-size: 0.875rem;
   font-weight: normal;
@@ -277,62 +281,28 @@ main #visual .visual_slide .visual_2 div.visual_text2 .visual_sub_btn {
           align-items: center;
 }
 
+main #visual .visual_slide .visual_2 div.visual_text2 .visual_sub_btn p {
+  font-size: 0.875rem;
+}
+
 main #visual .visual_slide .visual_2 div.visual_background {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   position: relative;
-  left: -15.625vw;
+  width: 50%;
+  height: 100vh;
   -webkit-transform: rotate(30deg);
           transform: rotate(30deg);
 }
 
-main #visual .visual_slide .visual_2 div.visual_background ul:nth-child(1) li:nth-child(1) {
-  background-image: url("../images/jay1-1.png");
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-main #visual .visual_slide .visual_2 div.visual_background ul:nth-child(1) li:nth-child(2) {
-  background-image: url("../images/jay1-2.png");
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-main #visual .visual_slide .visual_2 div.visual_background ul:nth-child(1) li:nth-child(3) {
-  background-image: url("../images/jay1-3.png");
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-main #visual .visual_slide .visual_2 div.visual_background ul:nth-child(2) li:nth-child(1) {
-  background-image: url("../images/jay2-1.png");
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-main #visual .visual_slide .visual_2 div.visual_background ul:nth-child(2) li:nth-child(2) {
-  background-image: url("../images/jay2-2.png");
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-main #visual .visual_slide .visual_2 div.visual_background ul:nth-child(2) li:nth-child(3) {
-  background-image: url("../images/jay2-3.png");
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
 main #visual .visual_slide .visual_2 div.visual_background ul {
   position: relative;
-  -webkit-transition: 1s;
-  transition: 1s;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  width: 50%;
+  height: 100%;
+  right: 0;
 }
 
 main #visual .visual_slide .visual_2 div.visual_background ul li {
@@ -342,7 +312,13 @@ main #visual .visual_slide .visual_2 div.visual_background ul li {
   border: 10px solid #fff;
   -webkit-box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
           box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
-  margin: 5.85938vh 3.125vw;
+  margin: 0 3.125vw;
+  position: absolute;
+}
+
+main #visual .visual_slide .visual_2 div.visual_background ul li img {
+  width: 100%;
+  height: 100%;
 }
 
 main #popular {
@@ -456,7 +432,7 @@ main #popular .popular_grid li:nth-child(2) .img_box {
 }
 
 main #popular .popular_grid li:nth-child(2) .popular_text_box {
-  bottom: 0;
+  top: 20.83333vw;
   left: 50%;
 }
 
@@ -491,7 +467,7 @@ main #popular .popular_grid li:nth-child(5) .img_box {
 
 main #popular .popular_grid li:nth-child(5) .popular_text_box {
   left: 18%;
-  bottom: 12%;
+  top: 20.83333vw;
 }
 
 main #popular .popular_grid li:nth-child(6) .img_box {
@@ -507,6 +483,7 @@ main #popular .popular_grid li:nth-child(6) .popular_text_box {
 
 main #sale_banner {
   position: relative;
+  overflow: hidden;
   width: 100vw;
   height: 100vh;
 }
@@ -544,7 +521,7 @@ main #sale_banner .sale_container .sale_text {
 }
 
 main #sale_banner .sale_container .sale_text h2 {
-  font-size: 6.25rem;
+  font-size: 5rem;
   font-weight: bold;
   color: #fff;
   line-height: 8.75rem;
@@ -576,11 +553,11 @@ main #sale_banner .sale_container .sale_img {
 }
 
 main #sale_banner .sale_container .sale_img img {
-  width: auto;
-  height: 100vh;
+  width: 60vw;
+  height: auto;
   position: absolute;
   right: -5%;
-  bottom: 0;
+  bottom: 1.5625vw;
 }
 
 main #last_viewed {
@@ -1008,8 +985,9 @@ main #md_pick .md_slider .md_imgs li.page_3 {
 
 main #md_pick .md_slider .scroll_btn {
   position: absolute;
-  top: 70%;
+  top: 36.45833vw;
   left: 5%;
+  cursor: pointer;
 }
 
 main #street {

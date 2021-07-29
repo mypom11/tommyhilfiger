@@ -43,7 +43,20 @@ $font-normal : #3d3d3d;
 @function vh($s){
     @return $s/10.24 +vh;
 }
+@mixin middle_window{
+  @media (min-width: 768px) and (max-width: 1279px){
+    @content;
+  }
+}
+@mixin mobile{
+  @media (min-width: 0px) and (max-width: 768px){
+    @content;
+  }
+}
 
+html{
+  font-size: 1vw;
+}
 body{
     @include font(rem(14), normal, $font-normal);
     font-family: 'Oswald', sans-serif;
@@ -202,6 +215,9 @@ main{
               font-size: rem(20);
             }
             .visual_sub_btn{
+              p{
+                font-size: rem(14);
+              }
               width: vw(380);
               margin-top: vh(80);
               @include flex;
@@ -294,7 +310,7 @@ main{
             right: 0;
           }
           .popular_text_box{
-            bottom: 0;
+            top: vw(400);
             left: 50%;
           }
         }
@@ -326,7 +342,7 @@ main{
           }
           .popular_text_box{
             left: 18%;
-            bottom: 12%;
+            top: vw(400);
           }
         }
         &:nth-child(6){
@@ -347,6 +363,7 @@ main{
 
   #sale_banner{
     position: relative;
+    overflow: hidden;
     @include size(100vw,100vh);
     .sale_container{
       @include size(100vw, 100vh);
@@ -357,7 +374,7 @@ main{
         @include flex;
         flex-direction: column;
         h2{
-          @include font(rem(100),bold,#fff);
+          @include font(rem(80),bold,#fff);
           line-height: rem(140);
         }
         p{
@@ -377,8 +394,8 @@ main{
         box-shadow: -3px 3px 6px rgba(0,0,0,0.5);
         @include size(vw(800),vw(800));
         img{
-          @include size(auto, 100vh);
-          @include position($b:0, $r:-5%);
+          @include size(60vw, auto);
+          @include position($b:vw(30), $r:-5%);
         }
       }
     }
@@ -582,7 +599,7 @@ main{
         }
       }
       .scroll_btn{
-        @include position(70%, 5%);
+        @include position(vw(700), 5%);
         cursor: pointer;
       }
     }
